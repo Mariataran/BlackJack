@@ -37,9 +37,11 @@ public class Main {
                 else if (dealer.hand.getScore() > 21)
                     player.condition = Condition.WIN;
                 else if (dealer.hand.getScore() > player.hand.getScore())
-                    player.condition = Condition.DRAW;
+                    player.condition = Condition.LOSS;
                 else if (player.hand.getScore() > dealer.hand.getScore())
                     player.condition = Condition.WIN;
+                else if (dealer.hand.getScore() == player.hand.getScore())
+                    player.condition = Condition.DRAW;
             }
             dealer.condition = Condition.ENDED;
             System.out.println(player.name + ": " + player.condition + " with " + player.hand + " and "
