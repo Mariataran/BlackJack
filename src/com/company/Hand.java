@@ -7,6 +7,8 @@ import java.util.LinkedList;
  */
 public class Hand extends LinkedList<Card>{
 
+    public int bet;
+
     public int getScore() {
         int sum = 0;
         for(Card c: this)

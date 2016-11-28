@@ -6,12 +6,16 @@ package com.company;
 public abstract class Player {
     Hand hand = new Hand();
     private Intellect intellect;
+    private Better better;
     String name;
     Condition condition = Condition.PLAYING;
+    Integer balance;
 
-    public Player(Intellect intellect, String name) {
+    public Player(Intellect intellect, Better better, String name, Integer balance) {
         this.intellect = intellect;
         this.name = name;
+        this.better = better;
+        this.balance = balance;
     }
 
     public void take(Card current) {
@@ -23,6 +27,10 @@ public abstract class Player {
         if (score > 21) {
             return Command.STAND;
         }
-        return intellect.decide(score);
+        return this.intellect.decide(score);
+    }
+
+    public void makeBet(Hand hand) {
+        hand.bet += this.better.makeBet();
     }
 }
