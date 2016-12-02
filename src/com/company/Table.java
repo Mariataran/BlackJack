@@ -13,8 +13,8 @@ public class Table {
 
     public Table() {
         players = new LinkedList<>();
-        this.players.add(new Computer(new LimitIntellect(14), "First"));
-        this.players.add(new Computer(new LimitIntellect(20), "Second"));
+        this.players.add(new Computer(new LimitIntellect(14), new HalfBetter(), "First", 200));
+        this.players.add(new Computer(new LimitIntellect(20), new HalfBetter(), "Second", 200));
         this.players.add(new Human(new ConsoleIntellect(), new ConsoleBetter(), "Me", 200));
         dealer = new Dealer();
         this.players.add(dealer);
@@ -63,15 +63,44 @@ public class Table {
 
     public void makeBet() {
         for (Player player: this.players){
+            if(player!=dealer)
             player.makeBet(player.hand);
         }
     }
 
     public void payBets() {
-
+        for (Player player: this.players){
+            if(player!=dealer) {
+                if (player.condition == Condition.WIN)
+                    player.balance += player.hand.bet;
+                else
+                    player.balance -= player.hand.bet * 2;
+                System.out.println(player.name + ": " + player.balance);
+            }
+        }
     }
 
     public void discardCards() {
+        for (Player player: this.players) {
+            player.hand.clear();
+        }
+    }
 
+    public boolean allBankrupts() {
+        int count = 0;
+        for (Player player: this.players){
+            if (player!=dealer) {
+                if (player.condition == Condition.BANKRUPT){
+                    count += 1;
+                }
+            }
+        }
+        if (count == 3)
+            return true;
+        else
+            return false;
+    }
+
+    public void endOfGame() {
     }
 }

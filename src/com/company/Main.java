@@ -4,16 +4,24 @@ public class Main {
     public static void main(String[] args) {
         Table table = new Table();
 
-        table.makeBet();
+        while (true) {
+            if (table.allBankrupts() == false) {
+                table.makeBet();
 
-        table.dealCards();
+                table.dealCards();
 
-        table.game();
+                table.game();
 
-        table.whoIsWinner();
+                table.whoIsWinner();
 
-        table.payBets();
+                table.payBets();
 
-        table.discardCards();
+                table.discardCards();
+            }
+            else {
+                table.endOfGame();
+                break;
+            }
+        }
     }
 }

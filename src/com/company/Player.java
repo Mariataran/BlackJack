@@ -31,6 +31,6 @@ public abstract class Player {
     }
 
     public void makeBet(Hand hand) {
-        hand.bet += this.better.makeBet();
+        hand.bet += this.better.makeBet(balance);
     }
 }

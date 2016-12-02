@@ -9,8 +9,8 @@ public class ConsoleBetter extends Better {
     private Scanner in = new Scanner(System.in);
 
     @Override
-    public int makeBet(Hand hand) {
-        System.out.println("MAKE YOUR CHOICE (BET)!");
+    public int makeBet(int balance) {
+        System.out.println("MAKE YOUR CHOICE (BET)! YOUR BALANCE IS " + balance);
         Integer c = in.nextInt();
         return c;
     }
